@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="장도경 — 스포츠 & 테크놀로지 프로필" />
+  <title>장도경 | Sports & Technology</title>
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: rgba(255,255,255,.78);
+      --text: #111;
+      --muted: #6e6e73;
+      --line: #d2d2d7;
+      --accent: #0071e3;
+      --dark: #161617;
+      --radius: 28px;
+      --nav-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 20px);
+    }
+
+    body {
+      font-family:
+        -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 1000;
+      background: rgba(245,245,247,.78);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      height: 100%;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -.03em;
+      font-size: 17px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: #424245;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* Layout */
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      width: min(1180px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    /* Hero */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+    }
+
+    .hero {
+      width: 100%;
+      padding: 110px 0 100px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      max-width: 950px;
+      font-size: clamp(58px, 9vw, 120px);
+      line-height: .95;
+      letter-spacing: -.065em;
+      font-weight: 700;
+      margin-bottom: 42px;
+    }
+
+    .hero-quote {
+      max-width: 760px;
+      font-size: clamp(22px, 3vw, 36px);
+      line-height: 1.35;
+      letter-spacing: -.035em;
+      color: #424245;
+    }
+
+    /* Sections */
+    .section {
+      padding: 130px 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      margin-bottom: 70px;
+    }
+
+    .section-number {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .info-card {
+      background: white;
+      padding: 42px;
+      min-height: 230px;
+    }
+
+    .info-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .info-card strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1.35;
+      letter-spacing: -.025em;
+    }
+
+    /* Timeline */
+    .timeline {
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 60px;
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-label {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .timeline-content h3 {
+      font-size: 27px;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+
+    .timeline-content p {
+      color: #424245;
+      font-size: 17px;
+      max-width: 760px;
+    }
+
+    /* Activities */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .activity-card {
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius);
+      padding: 42px;
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .activity-card .number {
+      color: #86868b;
+      font-size: 14px;
+    }
+
+    .activity-card h3 {
+      font-size: 29px;
+      letter-spacing: -.035em;
+    }
+
+    /* Qualifications */
+    .qualification-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .qualification {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+
+    .qualification .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #f0f0f2;
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    .qualification h3 {
+      font-size: 25px;
+      letter-spacing: -.03em;
+    }
+
+    /* Contact */
+    #contact {
+      width: 100%;
+      background: var(--dark);
+      color: white;
+    }
+
+    .contact-inner {
+      width: min(1180px, calc(100% - 48px));
+      margin: auto;
+      padding: 130px 0;
+    }
+
+    .contact-inner .section-number {
+      color: #86868b;
+    }
+
+    .contact-title {
+      max-width: 900px;
+      font-size: clamp(48px, 7vw, 90px);
+      line-height: .98;
+      letter-spacing: -.06em;
+      margin: 35px 0 75px;
+    }
+
+    .contact-list {
+      border-top: 1px solid #424245;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 0;
+      border-bottom: 1px solid #424245;
+      gap: 20px;
+    }
+
+    .contact-row span:first-child {
+      color: #86868b;
+      font-size: 14px;
+    }
+
+    .contact-row span:last-child,
+    .contact-row a {
+      font-size: 18px;
+      text-align: right;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #86868b;
+      width: min(1180px, calc(100% - 48px));
+      margin: auto;
+      padding: 0 0 40px;
+      font-size: 13px;
+    }
+
+    /* Mobile */
+    .mobile-menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      :root {
+        --nav-height: 62px;
+      }
+
+      section,
+      .contact-inner,
+      footer {
+        width: min(100% - 36px, 680px);
+      }
+
+      .nav-inner {
+        padding: 0 18px;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 18px 20px;
+        background: rgba(245,245,247,.96);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0,0,0,.08);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 14px 0;
+      }
+
+      .hero {
+        padding: 90px 0 70px;
+      }
+
+      .hero h1 {
+        font-size: clamp(52px, 17vw, 90px);
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 45px;
+      }
+
+      .about-grid,
+      .activity-grid,
+      .qualification-list {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 32px 0;
+      }
+
+      .info-card,
+      .activity-card,
+      .qualification {
+        padding: 30px;
+      }
+
+      .contact-inner {
+        padding: 90px 0;
+      }
+
+      .contact-title {
+        margin-bottom: 55px;
+      }
+
+      .contact-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-row span:last-child,
+      .contact-row a {
+        text-align: left;
+        word-break: break-word;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fixed Navigation -->
+  <nav class="nav" aria-label="Main Navigation">
+    <div class="nav-inner">
+      <a href="#home" class="brand">장도경</a>
+
+      <button class="mobile-menu" aria-label="메뉴 열기" aria-expanded="false">
+        ☰
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#education">학력 및 이력</a></li>
+        <li><a href="#activities">스포츠 활동</a></li>
+        <li><a href="#qualifications">자격 및 수상</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Home -->
+    <section id="home">
+      <div class="hero">
+        <div class="eyebrow">Sports & Technology</div>
+
+        <h1>장도경</h1>
+
+        <p class="hero-quote">
+          "스포츠를 사랑하는 것을 넘어 기술로 스포츠의 가치를 발견하는 사람입니다."
+        </p>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <span class="section-number">01 / ABOUT</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+        <article class="info-card">
+          <span>PROFILE</span>
+          <strong>움직임이 자연스럽고 부드러운 스포츠인입니다.</strong>
+        </article>
+
+        <article class="info-card">
+          <span>INTEREST</span>
+          <strong>관심 분야: 스포츠(요가)</strong>
+        </article>
+
+        <article class="info-card">
+          <span>STRENGTH</span>
+          <strong>뛰어난 유연성을 가지고 있어, 유연성이 요구되는 대부분의 운동 종목을 잘 소화합니다.</strong>
+        </article>
+
+        <article class="info-card">
+          <span>CAREER GOAL</span>
+          <strong>희망 진로 및 직무: 요가 강사 및 스포츠 모델</strong>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education & Career -->
+    <section id="education" class="section">
+      <div class="section-header">
+        <span class="section-number">02 / EXPERIENCE</span>
+        <h2 class="section-title">학력 및 이력</h2>
+      </div>
+
+      <div class="timeline">
+
+        <article class="timeline-item">
+          <div class="timeline-label">학력</div>
+          <div class="timeline-content">
+            <h3>서경대학교 스포츠&테크놀로지 학과 3학년 재학 중</h3>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-label">경력</div>
+          <div class="timeline-content">
+            <h3>골프존 인포 아르바이트</h3>
+            <p>골프에 대한 높은 이해도와 능숙한 기계 사용 능력 보유</p>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-label">대외활동</div>
+          <div class="timeline-content">
+            <h3>벌크 동아리(웨이트 트레이닝) 홍보부장</h3>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Sports Activities -->
+    <section id="activities" class="section">
+      <div class="section-header">
+        <span class="section-number">03 / SPORTS</span>
+        <h2 class="section-title">스포츠 활동 및 참여 경험</h2>
+      </div>
+
+      <div class="activity-grid">
+
+        <article class="activity-card">
+          <span class="number">01</span>
+          <h3>요가 및 매트 필라테스 수업 참여</h3>
+        </article>
+
+        <article class="activity-card">
+          <span class="number">02</span>
+          <h3>수상스키</h3>
+        </article>
+
+        <article class="activity-card">
+          <span class="number">03</span>
+          <h3>스키</h3>
+        </article>
+
+        <article class="activity-card">
+          <span class="number">04</span>
+          <h3>농구 등 다양한 스포츠 활동 참여</h3>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Qualifications -->
+    <section id="qualifications" class="section">
+      <div class="section-header">
+        <span class="section-number">04 / QUALIFICATIONS</span>
+        <h2 class="section-title">자격 및 수상</h2>
+      </div>
+
+      <div class="qualification-list">
+
+        <article class="qualification">
+          <div class="icon">01</div>
+          <h3>스포츠 재활 마사지 1급</h3>
+        </article>
+
+        <article class="qualification">
+          <div class="icon">02</div>
+          <h3>peak level 1</h3>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="contact-inner">
+
+        <span class="section-number">05 / CONTACT</span>
+
+        <h2 class="contact-title">
+          Contact
+        </h2>
+
+        <div class="contact-list">
+
+          <div class="contact-row">
+            <span>Email</span>
+            <a href="mailto:luna2005630@gmail.com">
+              luna2005630@gmail.com
+            </a>
+          </div>
+
+          <div class="contact-row">
+            <span>Instagram</span>
+            <span>longdo_k_</span>
+          </div>
+
+          <div class="contact-row">
+            <span>Link</span>
+            <span>[suspicious link removed]</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 장도경
+  </footer>
+
+  <script>
+    // 모바일 메뉴
+    const menuButton = document.querySelector(".mobile-menu");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", isOpen);
+    });
+
+    // 메뉴 클릭 시 모바일 메뉴 닫기
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // 현재 위치에 따른 메뉴 Active 상태
+    const sections = document.querySelectorAll("main section[id]");
+    const links = document.querySelectorAll(".nav-links a");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(link => link.classList.remove("active"));
+
+            const activeLink = document.querySelector(
+              `.nav-links a[href="#${entry.target.id}"]`
+            );
+
+            if (activeLink) {
+              activeLink.classList.add("active");
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-30% 0px -60% 0px"
+      }
+    );
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
+
